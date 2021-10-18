@@ -41,7 +41,6 @@ def signup(request):
 
 
 def login(request):
-    print('0000#############777777777777777777777')
     #if 'email' in request.session:
     if request.user.is_authenticated:
         return redirect(index)
@@ -53,20 +52,14 @@ def login(request):
         user=auth.authenticate(username=email,password=password)
 
         if user is not None:
-            print('0000#############')
             auth.login(request,user)
-            print('0000##########333')
-
             #request.session['email']=email
             return redirect(index)
         else:
-            messages.info(request,'invalid credentials')
-            print('0000#############gggg')
-            
+            messages.info(request,'invalid credentials')           
             return redirect(login)
             
-    else:
-        
+    else:       
         return render(request,'accounts/login.html')
 
 
@@ -75,6 +68,5 @@ def logout(request):
     #if 'email' in request.session:
     if request.user.is_authenticated:
         #request.session.flush()
-        auth.logout(request)
-        
+        auth.logout(request)       
     return redirect(login)

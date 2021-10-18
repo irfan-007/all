@@ -172,20 +172,28 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						{% if request.user.is_authenticated  %}
+
+						<a href="/accounts/logout/" class="flex-c-m trans-04 p-lr-25">
+							LogOut
+						</a>
+
+						{% endif %}
+
+						<a href="/accounts/login/" class="flex-c-m trans-04 p-lr-25">
+							LOG-IN
+						</a>
+
+						<a href="/accounts/signup/" class="flex-c-m trans-04 p-lr-25">
+							SIGN-UP
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							Help & FAQs
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							My Account
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
 						</a>
 					</div>
 				</li>
