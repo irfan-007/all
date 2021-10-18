@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 
 from accounts.models import User_details
@@ -17,6 +17,20 @@ def users(request):
 
     return render(request,'admin/users.html',{'users':users})
 
+def adduser(request):
+    if request.method=='POST':
+    
+        phone=request.POST['phone']
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        email=request.POST['email']
+        password=request.POST['password']
+         
+        user=User.objects.create_user(username=email,first_name=fname,last_name=lname,password=password,email=email)
+        User_details.objects.create(phone=phone,user=user)
+
+        return redirect(users)
+    
 
 
 

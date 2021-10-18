@@ -12,4 +12,5 @@ path('notifications/', views.notifications ,name='notifications'),
 path('tables/', views.tables ,name='tables'),
 path('typography/', views.typography ,name='typography'),
 path('users/', views.users ,name='users'),
+path('adduser/', views.adduser ,name='adduser'),
 ]
