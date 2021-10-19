@@ -15,9 +15,9 @@ def users(request):
         temp=User_details.objects.filter(user=user).first()
         user.phone=temp.phone
 
-    return render(request,'admin/users.html',{'users':users})
+    return render(request,'admin/users.html',{'users':users ,'flag':0})
 
-def adduser(request):
+def add_user(request):
     if request.method=='POST':
     
         phone=request.POST['phone']
@@ -31,9 +31,33 @@ def adduser(request):
 
         return redirect(users)
     
+def delete_user(request,id):
+    user=User.objects.get(pk=id)
+    user.delete()
 
+    return redirect(users)
 
+def update_user(request,id):
+    if request.method=='POST':
+        phone=request.POST['phone']
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        email=request.POST['email']
+        password=request.POST['password']
 
+        user=User.objects.get(pk=id)
+        temp=User_details.objects.get(pk=id)
+        temp.phone=phone
+        user.fname=fname
+        user.lname=lname
+        user.email=email
+        user.password=password
+        user.save()
+    
+    return redirect(users)
+
+def update_link(request,id):
+    return render(request,'admin/users.html',{'id':id ,'flag':1})
 
 
 
